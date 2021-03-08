@@ -1,5 +1,6 @@
-module.exports = {
-    databaseFunction: () => [
+const databaseFunction = () => {
+    const config = {};
+    const data = [
         {
             title: 'Post One',
             content: 'This is my first post!'
@@ -16,5 +17,17 @@ module.exports = {
             title: 'Post Four',
             content: 'This is my fourth post!'
         }
-    ]
+    ];
+
+    // change to config.hasData to simulate crash
+    if (true) {
+        return data;
+    } else {
+        process.exit(1);
+    }
+
+}
+
+module.exports = {
+    databaseFunction
 };
