@@ -1,5 +1,8 @@
-const databaseFunction = () => {
-    const config = {};
+'use strict'; 
+
+const server = require('express')();
+
+server.get('/dbc', (req, res) => {
     const data = [
         {
             title: 'Post One',
@@ -18,16 +21,9 @@ const databaseFunction = () => {
             content: 'This is my fourth post!'
         }
     ];
+    res.send(data);
+});
 
-    // change to config.hasData to simulate crash
-    if (true) {
-        return data;
-    } else {
-        process.exit(1);
-    }
-
-}
-
-module.exports = {
-    databaseFunction
-};
+server.listen(4000, () => {
+    console.log(`Database connector running on port: 4000`);
+});

@@ -1,14 +1,19 @@
 'use strict';
 
-const app = require('express')();
-const { databaseFunction } = require('./datastore');
-const port = process.env.PORT || 3000;
+const server = require('express')();
+const { default: axios } = require('axios');
+const fetch = require('axios');
 
-app.get('/', (req, res) => {
-    databaseFunction();
-    res.status(200).send(databaseFunction());
+server.get('/', async (req, res) => {
+    const result = await axios.get('http://localhost:4000/dbc');
+
+    res.send(result.data);
 });
 
-app.listen(port, () => {
-    console.log(`Listening on port: ${port}`);
+server.get('/route2', (req, res) => {
+    res.send('still working');
+});
+
+server.listen(3000, () => {
+    console.log('Listening on port: 3000');
 });
